@@ -26,17 +26,20 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 30px;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #181825; /* dark, soft background */
+  color: #fff !important;
+  text-shadow: 0 0 8px #00fff7cc, 0 0 2px #ff00cc99, 0 2px 0 #181825;
 }
 
 .container {
   max-width: 750px;
   margin: 50px auto;
-  background-color: #fff;
+  background-color: #23234a; /* dark, soft container */
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px #000b;
+  color: #fff !important;
+  text-shadow: 0 0 8px #00fff7cc, 0 0 2px #ff00cc99, 0 2px 0 #181825;
 }
 
 h1 {
@@ -44,7 +47,8 @@ h1 {
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #333;
+  color: #fff !important;
+  text-shadow: 0 0 8px #00fff7cc, 0 0 2px #ff00cc99, 0 2px 0 #181825;
 }
 
 h1 img {
@@ -57,6 +61,8 @@ h1 img {
   font-size: 18px;
   margin-bottom: 30px;
   text-align: center;
+  color: #fff !important;
+  text-shadow: 0 0 8px #00fff7cc, 0 0 2px #ff00cc99, 0 2px 0 #181825;
 }
 
 .stats {
@@ -66,13 +72,21 @@ h1 img {
   background-color: #f5f5f5;
   padding: 15px 0;
   border-radius: 8px;
+  font-size: 2rem;
+  background: #23234a;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 8px #00fff7cc;
+  margin-bottom: 32px;
+  padding: 18px 0;
 }
 
 .stats p {
   margin: 0;
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: #fff !important;
+  text-shadow: 0 0 8px #00fff7cc, 0 0 2px #ff00cc99, 0 2px 0 #181825;
 }
 
 .game-grid {
@@ -84,16 +98,22 @@ h1 img {
 }
 
 .grid-cell {
-  background-color: #e8e8e8;
+  background-color: #23234a; /* dark, soft */
   border-radius: 8px;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 16px 2px #00fff799, 0 0 0 2px #23234a;
+}
+
+.grid-cell:hover {
+  background-color: #2e2e5a;
+  box-shadow: 0 0 32px 4px #00fff7cc, 0 0 0 2px #ff00cc;
 }
 
 .water-can-wrapper {
@@ -140,4 +160,267 @@ button {
   display: block;
   margin: 30px auto 0;
   transition: background-color 0.2s;
+}
+
+/* --- Water Drop Game: Clean, Slick, Bigger Retro Look --- */
+#water-drop-container {
+  margin-top: 60px;
+  background: linear-gradient(135deg, #181825 0%, #1e1e2f 100%);
+  box-shadow: 0 0 0 10px #00fff7, 0 0 40px #00fff7aa, 0 8px 48px #000b;
+  border: 6px solid #ff00cc;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  color: #fff;
+  font-size: 1.35rem;
+  padding: 48px 32px 32px 32px;
+  max-width: 900px;
+}
+
+#water-drop-container h1 {
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: #00fff7;
+  text-shadow: 0 0 8px #ff00cc, 0 2px 0 #000;
+  margin-bottom: 18px;
+}
+
+#water-drop-container .game-instructions {
+  font-size: 1.5rem;
+  color: #fff;
+  background: #ff00cc;
+  padding: 10px 18px;
+  border-radius: 10px;
+  margin-bottom: 32px;
+  box-shadow: 0 0 12px #ff00cc99;
+}
+
+#drop-game-area {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  background: repeating-linear-gradient(135deg, #181825 0 20px, #23234a 20px 40px);
+  border: 5px solid #00fff7;
+  border-radius: 18px;
+  margin: 0 auto 32px auto;
+  overflow: hidden;
+  box-shadow: 0 0 32px #00fff7cc, 0 0 0 8px #ff00cc;
+}
+
+.water-drop {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #00fff7 70%, #00bfff 100%);
+  border: 4px solid #fff;
+  box-shadow: 0 0 24px #00fff7cc, 0 0 0 6px #181825;
+  cursor: pointer;
+  animation: drop-fall 2.5s linear forwards;
+  filter: brightness(1.2) drop-shadow(0 0 8px #00fff7);
+}
+
+.bad-drop {
+  background: radial-gradient(circle at 30% 30%, #ff00cc 70%, #ff0055 100%);
+  border: 4px solid #fff;
+  box-shadow: 0 0 24px #ff00ccbb, 0 0 0 6px #181825;
+  filter: brightness(1.2) drop-shadow(0 0 8px #ff00cc);
+}
+
+@keyframes drop-fall {
+  0% { top: -80px; }
+  100% { top: 100%; }
+}
+
+#drop-feedback {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  min-height: 40px;
+  color: #00fff7;
+  text-shadow: 0 0 8px #ff00cc, 0 2px 0 #000;
+  letter-spacing: 2px;
+}
+
+#drop-milestone {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #00fff7;
+  font-weight: bold;
+  margin-bottom: 18px;
+  min-height: 32px;
+  text-shadow: 0 0 8px #ff00cc, 0 2px 0 #000;
+}
+
+#drop-score {
+  color: #ff00cc;
+  font-size: 2.8rem;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  text-shadow: 0 0 8px #00fff7, 0 2px 0 #000;
+}
+
+#drop-timer {
+  color: #00fff7;
+  font-size: 2.2rem;
+  text-shadow: 0 0 8px #ff00cc, 0 2px 0 #000;
+}
+
+#drop-reset {
+  background: #181825;
+  color: #00fff7;
+  border: 3px solid #ff00cc;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  font-size: 2rem;
+  margin-top: 24px;
+  box-shadow: 0 0 16px #ff00cc99;
+  padding: 18px 40px;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+#drop-reset:hover {
+  background: #ff00cc;
+  color: #fff;
+  border-color: #00fff7;
+}
+
+#start-game {
+  background: #181825;
+  color: #00fff7;
+  border: 3px solid #ff00cc;
+  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  font-size: 2rem;
+  margin-top: 24px;
+  box-shadow: 0 0 16px #ff00cc99;
+  padding: 18px 40px;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+#start-game:hover {
+  background: #ff00cc;
+  color: #fff;
+  border-color: #00fff7;
+  box-shadow: 0 0 32px 8px #00fff7cc, 0 0 0 2px #ff00cc;
+}
+#start-game:active {
+  background: #00fff7;
+  color: #ff00cc;
+  box-shadow: 0 0 40px 12px #ff00ccbb, 0 0 0 2px #00fff7;
+}
+
+#confetti {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Retro scanline effect */
+#water-drop-container:before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.04) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  z-index: 2;
+  border-radius: 12px;
+}
+
+/* Retro Symbols */
+.retro-symbol {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.heart {
+  width: 48px;
+  height: 48px;
+  background: none;
+  position: relative;
+}
+.heart:before, .heart:after {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  width: 24px;
+  height: 40px;
+  background: #ff0055;
+  border-radius: 24px 24px 0 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 16px #ff00cc99;
+}
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+}
+.star {
+  width: 48px;
+  height: 48px;
+  background: none;
+  position: relative;
+}
+.star:before, .star:after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 0;
+  width: 4px;
+  height: 48px;
+  background: #ffe600;
+  box-shadow: 0 0 12px #ffe600cc;
+}
+.star:after {
+  transform: rotate(72deg);
+}
+.star:before {
+  transform: rotate(-72deg);
+}
+.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  background: #ffe600;
+  box-shadow: 0 0 16px #ffe60099;
+}
+.coin {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffe600 70%, #ffb700 100%);
+  border: 3px solid #fff;
+  box-shadow: 0 0 16px #ffe60099;
+  position: relative;
+}
+.coin:after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  #water-drop-container {
+    padding: 18px 4vw 18px 4vw;
+    max-width: 99vw;
+  }
+  #drop-game-area {
+    height: 260px;
+  }
+  #water-drop-container h1 {
+    font-size: 2.1rem;
+  }
+  #drop-feedback, #drop-milestone {
+    font-size: 1.1rem;
+  }
 }
